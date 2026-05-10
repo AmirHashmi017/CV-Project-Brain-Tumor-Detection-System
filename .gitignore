@@ -1,0 +1,23 @@
+# Environments
+venv/
+env/
+.env
+
+# Python Cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# IDEs
+.vscode/
+.idea/
+
+# Large Datasets and Weights
+dataset/
+models/
+outputs/
+*.weights
+*.pt
+
+# MacOS
+.DS_Store
