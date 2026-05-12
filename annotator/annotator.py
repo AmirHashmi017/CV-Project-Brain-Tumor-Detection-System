@@ -305,7 +305,7 @@ class AnnotatorApp:
 if __name__ == "__main__":
     root = tk.Tk()
     app = AnnotatorApp(root)
-    # Ensure window adjusts correctly on start
+    
     root.update()
     app.update_display()
     root.mainloop()
