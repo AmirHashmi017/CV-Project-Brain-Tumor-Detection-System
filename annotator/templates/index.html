@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MedAnnotate | Brain Tumor Detection</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <span class="icon">🧠</span>
+                <h1>MedAnnotate</h1>
+            </div>
+            
+            <div class="section">
+                <h3 class="section-title">Upload</h3>
+                <div class="upload-box">
+                    <input type="file" id="file-input" multiple accept="image/*" style="display: none;">
+                    <button id="btn-upload" class="btn btn-secondary">📤 Upload Images</button>
+                </div>
+            </div>
+
+            <div class="section" style="flex-grow: 1; display: flex; flex-direction: column;">
+                <h3 class="section-title">Images</h3>
+                <div id="image-list" class="image-list">
+                    <!-- Images will be loaded here -->
+                </div>
+            </div>
+            
+            <div class="section">
+                <h3 class="section-title">Classes</h3>
+                <div id="class-list" class="class-list">
+                    {% for cls in classes %}
+                    <div class="class-item" data-id="{{ loop.index0 }}">
+                        <span class="color-dot" style="background-color: var(--clr-{{ loop.index0 }})"></span>
+                        <span class="name">{{ cls }}</span>
+                        <span class="key">{{ loop.index }}</span>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="section">
+                <h3 class="section-title">Add Custom Class</h3>
+                <div class="btn-group">
+                    <input type="text" id="custom-class-input" placeholder="Class name..." class="btn btn-secondary" style="text-align: left; padding-left: 10px;">
+                    <button id="btn-add-class" class="btn btn-secondary" style="width: 60px;">+</button>
+                </div>
+            </div>
+
+            <div class="section actions">
+                <button id="btn-save" class="btn btn-primary">💾 Save to Disk</button>
+                <div class="btn-group">
+                    <button id="btn-undo" class="btn btn-secondary">⌫ Undo</button>
+                    <button id="btn-clear" class="btn btn-danger">🗑 Clear</button>
+                </div>
+            </div>
+
+            <div class="section">
+                <h3 class="section-title">Download</h3>
+                <div class="download-panel">
+                    <button id="dl-img" class="dl-btn">🖼️ Annotated Image</button>
+                    <button id="dl-txt" class="dl-btn">📄 YOLO Labels (.txt)</button>
+                    <button id="dl-json" class="dl-btn">🗂️ Full JSON (.json)</button>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="toolbar">
+                <div class="toolbar-left">
+                    <div class="mode-switcher">
+                        <button id="mode-bbox" class="mode-btn active" title="Bounding Box (B)">📦 Box</button>
+                        <button id="mode-poly" class="mode-btn" title="Polygon (P)">🔷 Poly</button>
+                    </div>
+                    <div id="status-badge" class="status-badge">Ready</div>
+                </div>
+                <div class="toolbar-center">
+                    <h2 id="current-filename">Select an image...</h2>
+                </div>
+                <div class="toolbar-right">
+                    <div class="zoom-controls">
+                        <span id="zoom-val">100%</span>
+                    </div>
+                </div>
+            </header>
+
+            <div class="canvas-container">
+                <div id="canvas-wrapper" class="canvas-wrapper">
+                    <img id="base-img" draggable="false">
+                    <canvas id="main-canvas"></canvas>
+                </div>
+            </div>
+
+            <footer class="footer">
+                <div class="hint">
+                    <span class="key-hint"><b>L-Click</b>: Draw</span>
+                    <span class="key-hint"><b>R-Click</b>: Close Poly</span>
+                    <span class="key-hint"><b>B/P</b>: Change Mode</span>
+                    <span class="key-hint"><b>S</b>: Save</span>
+                </div>
+                <div id="ann-count" class="ann-count">0 annotations</div>
+            </footer>
+        </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/annotator.js') }}"></script>
+</body>
+</html>

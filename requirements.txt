@@ -1,4 +1,6 @@
 opencv-python
-numpy
+numpy<2
 Pillow
-streamlit
+streamlit<1.29
+streamlit-drawable-canvas
+flask
