@@ -65,11 +65,11 @@ def train_model():
     train_loader = DataLoader(train_dataset, batch_size=BATCH_SIZE, shuffle=True)
     val_loader = DataLoader(val_dataset, batch_size=BATCH_SIZE, shuffle=False)
 
-    model = get_model(len(dataset.classes))
+    model = get_model(len(train_dataset.classes))
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.Adam(model.parameters(), lr=LEARNING_RATE)
 
-    print(f"Starting training on {DEVICE} for {len(dataset.classes)} classes...")
+    print(f"Starting training on {DEVICE} for {len(train_dataset.classes)} classes...")
     
     for epoch in range(NUM_EPOCHS):
         model.train()
