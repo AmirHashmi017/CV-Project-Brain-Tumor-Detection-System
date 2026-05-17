@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MedAnnotate | Kidney Stone Detection</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
 </head>
+
 <body>
     <div class="app-container">
         <!-- Sidebar -->
@@ -15,7 +19,7 @@
                 <span class="icon">🧠</span>
                 <h1>MedAnnotate</h1>
             </div>
-            
+
             <div class="section">
                 <h3 class="section-title">Upload</h3>
                 <div class="upload-box">
@@ -30,13 +34,14 @@
                     <!-- Images will be loaded here -->
                 </div>
             </div>
-            
+
             <div class="section">
                 <h3 class="section-title">Classes</h3>
                 <div id="class-list" class="class-list">
                     {% for cls in classes %}
                     <div class="class-item" data-id="{{ loop.index0 }}">
-                        <span class="color-dot" style="background-color: var(--clr-{{ loop.index0 }})"></span>
+                        {% set style_attr = 'style="background-color: var(--clr-' ~ loop.index0 ~ ');"' %}
+                        <span class="color-dot" {{ style_attr|safe }}></span>
                         <span class="name">{{ cls }}</span>
                         <span class="key">{{ loop.index }}</span>
                     </div>
@@ -47,7 +52,8 @@
             <div class="section">
                 <h3 class="section-title">Add Custom Class</h3>
                 <div class="btn-group">
-                    <input type="text" id="custom-class-input" placeholder="Class name..." class="btn btn-secondary" style="text-align: left; padding-left: 10px;">
+                    <input type="text" id="custom-class-input" placeholder="Class name..." class="btn btn-secondary"
+                        style="text-align: left; padding-left: 10px;">
                     <button id="btn-add-class" class="btn btn-secondary" style="width: 60px;">+</button>
                 </div>
             </div>
@@ -111,4 +117,5 @@
 
     <script src="{{ url_for('static', filename='js/annotator.js') }}"></script>
 </body>
+
 </html>
