@@ -9,15 +9,15 @@ import matplotlib.pyplot as plt
 from sklearn.metrics import classification_report, confusion_matrix
 import seaborn as sns
 
-DATA_DIR = "dataset/brisc2025/classification_task/train"
-TEST_DIR = "dataset/brisc2025/classification_task/test"
-MODEL_SAVE_PATH = "models/tumor_classifier.pth"
+DATA_DIR = "dataset/Kindey Stone Dataset/Original"
+TEST_DIR = "dataset/Kindey Stone Dataset/Original"
+MODEL_SAVE_PATH = "models/stone_classifier.pth"
 BATCH_SIZE = 16
 NUM_EPOCHS = 15
 LEARNING_RATE = 0.001
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-class BrainTumorDataset(Dataset):
+class KidneyStoneDataset(Dataset):
     def __init__(self, root_dir, transform=None):
         self.root_dir = root_dir
         self.transform = transform
@@ -59,7 +59,7 @@ def train_model():
         print(f"Error: Data directory {DATA_DIR} not found. Please organize images into folders by class.")
         return
 
-    dataset = BrainTumorDataset(DATA_DIR, transform=transform)
+    dataset = KidneyStoneDataset(DATA_DIR, transform=transform)
     train_size = int(0.8 * len(dataset))
     val_size = len(dataset) - train_size
     train_dataset, val_dataset = torch.utils.data.random_split(dataset, [train_size, val_size])

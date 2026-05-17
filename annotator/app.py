@@ -14,7 +14,7 @@ os.makedirs(IMAGE_DIR, exist_ok=True)
 os.makedirs(LABEL_DIR, exist_ok=True)
 os.makedirs(VISUAL_DIR, exist_ok=True)
 
-DEFAULT_CLASSES = ["glioma", "meningioma", "no_tumor", "pituitary"]
+DEFAULT_CLASSES = ["Non-Stone", "Stone"]
 
 @app.route('/')
 def index():

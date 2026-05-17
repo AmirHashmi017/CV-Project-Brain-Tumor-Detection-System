@@ -6,7 +6,7 @@ let mode = 'bbox'; // 'bbox' or 'polygon'
 let points = [];
 let isDrawing = false;
 let zoom = 1.0;
-let classNames = ["glioma", "meningioma", "no_tumor", "pituitary"];
+let classNames = ["Non-Stone", "Stone"];
 
 const CLS_COLORS = ["#dc3232","#32c850","#3264e6","#e6c828","#b432dc","#32dce6","#e67832","#e63282"];
 

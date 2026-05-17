@@ -6,11 +6,11 @@ from sklearn.metrics import classification_report, confusion_matrix, accuracy_sc
 import seaborn as sns
 import matplotlib.pyplot as plt
 import numpy as np
-from train import BrainTumorDataset, get_model
+from train import KidneyStoneDataset, get_model
 
 # Config
-DATA_DIR = "dataset/brisc2025/classification_task/test"
-MODEL_PATH = "models/tumor_classifier.pth"
+DATA_DIR = "dataset/Kindey Stone Dataset/Original"
+MODEL_PATH = "models/stone_classifier.pth"
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 def evaluate():
@@ -24,7 +24,7 @@ def evaluate():
         print("Dataset not found.")
         return
 
-    dataset = BrainTumorDataset(DATA_DIR, transform=transform)
+    dataset = KidneyStoneDataset(DATA_DIR, transform=transform)
     loader = DataLoader(dataset, batch_size=16, shuffle=False)
     
     num_classes = len(dataset.classes)
@@ -64,7 +64,7 @@ def evaluate():
                 xticklabels=dataset.classes, yticklabels=dataset.classes)
     plt.xlabel('Predicted')
     plt.ylabel('True')
-    plt.title('Brain Tumor Classification - Confusion Matrix')
+    plt.title('Kidney Stone Classification - Confusion Matrix')
     
     os.makedirs("results", exist_ok=True)
     plt.savefig("results/confusion_matrix.png")
