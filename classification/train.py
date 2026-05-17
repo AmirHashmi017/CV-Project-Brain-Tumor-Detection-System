@@ -9,8 +9,8 @@ import matplotlib.pyplot as plt
 from sklearn.metrics import classification_report, confusion_matrix
 import seaborn as sns
 
-DATA_DIR = "dataset/Kindey Stone Dataset/Original"
-TEST_DIR = "dataset/Kindey Stone Dataset/Original"
+DATA_DIR = "dataset/split/train"
+TEST_DIR = "dataset/split/test"
 MODEL_SAVE_PATH = "models/stone_classifier.pth"
 BATCH_SIZE = 16
 NUM_EPOCHS = 15
@@ -59,10 +59,8 @@ def train_model():
         print(f"Error: Data directory {DATA_DIR} not found. Please organize images into folders by class.")
         return
 
-    dataset = KidneyStoneDataset(DATA_DIR, transform=transform)
-    train_size = int(0.8 * len(dataset))
-    val_size = len(dataset) - train_size
-    train_dataset, val_dataset = torch.utils.data.random_split(dataset, [train_size, val_size])
+    train_dataset = KidneyStoneDataset(DATA_DIR, transform=transform)
+    val_dataset = KidneyStoneDataset(TEST_DIR, transform=transform)
 
     train_loader = DataLoader(train_dataset, batch_size=BATCH_SIZE, shuffle=True)
     val_loader = DataLoader(val_dataset, batch_size=BATCH_SIZE, shuffle=False)

@@ -7,3 +7,4 @@ torchvision
 scikit-learn
 seaborn
 matplotlib
+streamlit

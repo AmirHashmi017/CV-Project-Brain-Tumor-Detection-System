@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from train import KidneyStoneDataset, get_model
 
-DATA_DIR = "dataset/Kindey Stone Dataset/Original"
+DATA_DIR = "dataset/split/test"
 MODEL_PATH = "models/stone_classifier.pth"
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
