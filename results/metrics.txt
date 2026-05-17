@@ -1,0 +1,11 @@
+Accuracy: 98.84%
+
+Classification Report:
+              precision    recall  f1-score   support
+
+   Non-Stone       0.99      0.98      0.99      1787
+       Stone       0.98      0.99      0.99      1577
+
+    accuracy                           0.99      3364
+   macro avg       0.99      0.99      0.99      3364
+weighted avg       0.99      0.99      0.99      3364
