@@ -6,7 +6,6 @@ from flask import Flask, render_template, request, jsonify, send_from_directory,
 
 app = Flask(__name__)
 
-# Configuration
 IMAGE_DIR = os.path.join(os.getcwd(), "temp_data", "images")
 LABEL_DIR = os.path.join(os.getcwd(), "annotations", "labels")
 VISUAL_DIR = os.path.join(os.getcwd(), "annotations", "images")
@@ -81,7 +80,6 @@ def save_annotations():
     
     h, w = img.shape[:2]
     
-    # Save YOLO labels
     label_path = os.path.join(LABEL_DIR, os.path.splitext(filename)[0] + ".txt")
     with open(label_path, "w") as f:
         for ann in anns:
@@ -97,7 +95,7 @@ def save_annotations():
                 pts_str = " ".join([f"{px/w:.6f} {py/h:.6f}" for px, py in ann["points"]])
                 f.write(f"{cls_id} {pts_str}\n")
                 
-    # Save visual verification image
+
     display = img.copy()
     colors = [(220,50,50),(50,200,80),(50,100,230),(230,200,40),(180,50,220),(50,220,230),(230,120,50),(230,50,130)]
     for ann in anns:
