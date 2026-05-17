@@ -1,6 +1,9 @@
-opencv-python
-numpy<2
-Pillow
-streamlit<1.29
-streamlit-drawable-canvas
 flask
+opencv-python
+numpy
+Pillow
+torch
+torchvision
+scikit-learn
+seaborn
+matplotlib
